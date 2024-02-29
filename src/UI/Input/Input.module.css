@@ -1,0 +1,21 @@
+.input {
+    display: flex;
+    align-items: center;
+
+    width: 255px;
+    height: 25px;
+
+    border: 1px solid rgb(47, 202, 182);
+    border-radius: 4px;
+
+    background-image: url('../../Icons/search.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+input {
+    border: none;
+    width: 225px;
+    outline: none;
+}
