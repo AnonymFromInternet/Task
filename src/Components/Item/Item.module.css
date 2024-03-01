@@ -1,10 +1,41 @@
 .wrapper {
-    background-color: red;
     height: 50px;
-
     margin: 4px;
 
     word-wrap: break-word;
-    overflow-x: scroll;
     overflow-y: hidden;
+
+    border: 1px solid #f54242;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px;
+}
+
+.type-file {
+    width: 40px;
+    height: 100%;
+
+    background-image: url('../../Icons/file.png');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.type-folder {
+    width: 40px;
+    height: 100%;
+
+    background-image: url('../../Icons/folder.png');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.name {
+    text-align: center;
+    max-width: 80%;
 }

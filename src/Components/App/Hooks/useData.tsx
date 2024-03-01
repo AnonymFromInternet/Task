@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { Item as ItemInterface } from "../../../Types/Response.interface.ts"
 import apiService from "../../../Services/GetData/GetData.service.ts"
 import { DATA_TYPE_FOLDER } from "../../../GlobalHelpers/GlobalHelpers.ts"
 import { getFlattenedItems } from "../Helpers/Helpers.ts"
 import { FlattenedItem } from "../Types/Types.ts"
+import { Item } from "../../Item/Item.tsx"
 
 export const useData = () => {
     const [isDataLoading, setIsDataLoading] = useState<Boolean>(false)
@@ -12,7 +13,11 @@ export const useData = () => {
     const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
     const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
 
-    console.log("items :", items);
+    const itemsAsJSX = useMemo(() => {
+        return items.map(item => {
+            return <Item key={item.id} item={item} />
+        })
+    }, [items])
     
 
     useEffect(() => {
@@ -56,5 +61,6 @@ export const useData = () => {
         setFindedElements,
         setChosenSearchableElementId,
         goToFortTelecomSite,
+        itemsAsJSX,
     }
 }
