@@ -55,3 +55,30 @@
 .active-folder {
     background-color: rgba(249, 186, 43, .5);
 }
+
+.closed {
+    transform: rotate(0.75turn);
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+}
+
+.opened {
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
+}
+
+.Wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-type-file {
+    color: #0ccc64;
+}
+
+.arrow-type-folder {
+    color: #f9ba2b;
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useMemo } from "react"
 
 import classNames from "classnames"
 import { DataContext } from "../../Store/Store.ts"
@@ -13,12 +13,14 @@ interface ChosenSearchableElementProps {
 export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {        
     const { findedElements, items: storeItems, scrollValue } = useContext(DataContext)
     const items = findedElements && findedElements.length > 0 ? findedElements : storeItems
-
-    // TODO: useMemo
-    const { name, description, type } = items.find(item => item.id === id) || {}
+    
+    const { name, description, type } = useMemo(() => {
+        return items.find(item => item.id === id) || { name: '', description: '', type: '' }
+    }, [items])
     
     const style = {
-        transform: `translate(0, ${scrollValue}px)` 
+        transform: `translate(0, ${scrollValue}px)`,
+        transition: '.4s',
     }
 
     return (

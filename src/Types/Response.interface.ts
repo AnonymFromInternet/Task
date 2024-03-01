@@ -16,8 +16,10 @@ export interface ResponseInterface {
 export interface Context {
     findedElements: Array<Item>,
     itemsAsJSX: ReactElement[],
-    setChosenSearchableElementId: (id: string) => void,
     chosenSearchableElementId: string,
     items: Array<Item>,
     scrollValue: number,
+
+    setChosenSearchableElementId: (id: string) => void,
+    toggleOpenCloseGroup: (id: string, prevState: 'opened' | 'closed') => void,
 }
