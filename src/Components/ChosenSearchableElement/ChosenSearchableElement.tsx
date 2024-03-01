@@ -1,5 +1,5 @@
 import React from "react"
 
-export const CChosenSearchableElement = () => {
+export const ChosenSearchableElement = () => {
     return <div>ChosenSearchableElement</div>
 }
