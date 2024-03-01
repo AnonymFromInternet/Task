@@ -10,9 +10,7 @@ interface ChosenSearchableElementProps {
     id: string
 }
 
-export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {   
-    console.log("ChosenSearchableElement()");
-     
+export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {        
     const { findedElements, items: storeItems, scrollValue } = useContext(DataContext)
     const items = findedElements && findedElements.length > 0 ? findedElements : storeItems
 

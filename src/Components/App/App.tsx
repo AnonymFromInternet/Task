@@ -26,8 +26,6 @@ const App = () => {
     scrollValue,
   } = useData()
 
-
-
   useEffect(() => {
     window.addEventListener('scroll', moveChosenSearchableElement)
     return () => window.removeEventListener('scroll', moveChosenSearchableElement)

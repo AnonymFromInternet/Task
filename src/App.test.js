@@ -7,5 +7,4 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// TODO: Change into ts
 
