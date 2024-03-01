@@ -2,7 +2,7 @@ import React from "react"
 
 import { ChosenSearchableElement } from "../ChosenSearchableElement/ChosenSearchableElement.tsx"
 import { Item } from "../../Types/Response.interface.ts"
-import { Loader } from "../../UI/Loader/Loader.tsx"
+import { ReactComponent as Loader } from "../../Icons/loader.svg"
 import { Error } from "../../UI/Error/Error.tsx"
 
 import styles from './Tree.module.css'
@@ -20,7 +20,7 @@ export const Tree = ({ isDataLoading, items, chosenSearchableElementId, error }:
             <div className={styles['wrapper']} >
                 {error && <Error />}
 
-                {isDataLoading && <Loader />}
+                {isDataLoading && <Loader className={styles['loader']} />}
 
                 {!error && !isDataLoading && items.length > 0 && <div className={styles['elements-wrapper']}>elements wrapper</div>}
 

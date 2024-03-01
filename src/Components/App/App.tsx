@@ -33,14 +33,14 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className={styles['wrapper']}>
       <header className={styles['header']}>
         <Logo className={styles['logo']} onClick={goToFortTelecomSite} />
 
         <Input handleOnChange={setChosenSearchableElementId} />
       </header>
       <Tree isDataLoading={isDataLoading} items={items} chosenSearchableElementId={chosenSearchableElementId} error={error} />
-    </>
+    </div>
   );
 }
 
