@@ -10,9 +10,10 @@ interface ChosenSearchableElementProps {
     id: string
 }
 
-export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {
-    const { findedElements } = useContext(DataContext)
-    const { name, description, type } = findedElements.find(item => item.id === id) || {}
+export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {    
+    const { findedElements, items: storeItems } = useContext(DataContext)
+    const items = findedElements && findedElements.length > 0 ? findedElements : storeItems
+    const { name, description, type } = items.find(item => item.id === id) || {}
 
     return (
         <div key={id} className={classNames(styles['wrapper'], styles['render-animation'])}>

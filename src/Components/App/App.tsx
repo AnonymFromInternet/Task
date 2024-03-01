@@ -55,7 +55,7 @@ const App = () => {
   }
 
   return (
-    <DataContext.Provider value={{ findedElements, itemsAsJSX }}>
+    <DataContext.Provider value={{ findedElements, itemsAsJSX, setChosenSearchableElementId, chosenSearchableElementId, items }}>
       <div className={styles['wrapper']}>
         <header className={styles['header']}>
           <Logo className={styles['logo']} onClick={goToFortTelecomSite} />
@@ -71,7 +71,8 @@ const App = () => {
                   id={element.id}
                   className={classNames({ [styles['finded-element']]: true, [styles['active-finded-element']]: element.id === chosenSearchableElementId })}>
                   {element.name}
-                </div>))}
+                </div>
+              ))}
             </div>
           </div>
         </header>

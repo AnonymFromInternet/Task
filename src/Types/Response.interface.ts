@@ -16,4 +16,7 @@ export interface ResponseInterface {
 export interface Context {
     findedElements: Array<Item>,
     itemsAsJSX: ReactElement[],
+    setChosenSearchableElementId: (id: string) => void,
+    chosenSearchableElementId: string,
+    items: Array<Item>,
 }
