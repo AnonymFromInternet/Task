@@ -19,4 +19,5 @@ export interface Context {
     setChosenSearchableElementId: (id: string) => void,
     chosenSearchableElementId: string,
     items: Array<Item>,
+    scrollValue: number,
 }

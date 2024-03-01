@@ -17,9 +17,7 @@ export const useData = () => {
         return items.map(item => {
             return <Item key={item.id} item={item} width={item.width} />
         })
-    }, [items])    
-
-    console.log("items :", items);
+    }, [items])
 
     useEffect(() => {
         setIsDataLoading(true)

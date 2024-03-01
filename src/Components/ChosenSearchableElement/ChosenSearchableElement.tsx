@@ -10,13 +10,21 @@ interface ChosenSearchableElementProps {
     id: string
 }
 
-export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {    
-    const { findedElements, items: storeItems } = useContext(DataContext)
+export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) => {   
+    console.log("ChosenSearchableElement()");
+     
+    const { findedElements, items: storeItems, scrollValue } = useContext(DataContext)
     const items = findedElements && findedElements.length > 0 ? findedElements : storeItems
+
+    // TODO: useMemo
     const { name, description, type } = items.find(item => item.id === id) || {}
+    
+    const style = {
+        transform: `translate(0, ${scrollValue}px)` 
+    }
 
     return (
-        <div key={id} className={classNames(styles['wrapper'], styles['render-animation'])}>
+        <div key={id} className={classNames(styles['wrapper'], styles['render-animation'])} style={style}>
             {type === DATA_TYPE_FILE ? <div className={styles['type-file']} /> : <div className={styles['type-folder']} />}
 
             <div className={styles['name-wrapper']}>

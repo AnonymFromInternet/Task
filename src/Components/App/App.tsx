@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { Input } from '../../UI/Input/Input.tsx';
 import { Tree } from '../Tree/Tree.tsx';
@@ -23,6 +23,21 @@ const App = () => {
     goToFortTelecomSite,
     itemsAsJSX,
   } = useData()
+
+  const [scrollValue, setScrollValue] = useState<number>(0)
+
+  const moveChosenSearchableElement = () => {
+    const value = window.scrollY
+    
+    if (value >= 275) {
+      setScrollValue(value - 275)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', moveChosenSearchableElement)
+    return () => window.removeEventListener('scroll', moveChosenSearchableElement)
+  }, [])
 
   const onHandleInputChange = (value: string) => {
     if (!value) {
@@ -55,7 +70,7 @@ const App = () => {
   }
 
   return (
-    <DataContext.Provider value={{ findedElements, itemsAsJSX, setChosenSearchableElementId, chosenSearchableElementId, items }}>
+    <DataContext.Provider value={{ findedElements, itemsAsJSX, setChosenSearchableElementId, chosenSearchableElementId, items, scrollValue }}>
       <div className={styles['wrapper']}>
         <header className={styles['header']}>
           <Logo className={styles['logo']} onClick={goToFortTelecomSite} />
