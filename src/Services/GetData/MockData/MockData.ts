@@ -3,7 +3,7 @@ export const MockData = {
         // Files ->
         {
             "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
-            "name": "filename",
+            "name": "folderNameidbvciovefoivbeoivbefoibveioevoiboivboeifrbvioerbvoiervioebvioebvioerbvoierboivboeribvoirebvoberoivboirebv",
             "type": "file",
             "description": "File description"
         },
@@ -17,7 +17,7 @@ export const MockData = {
             "id": "de0df2d4-f15d-458d-8ae4-f85ab0b07924",
             "name": "filename",
             "type": "file",
-            "description": "File description"
+            "description": "folderNameidbvciovefoivbeoivbefoibveioevoiboivboeifrbvioerbvoiervioebvioebvioerbvoierboivboeribvoirebvoberoivboirebv"
         },
         {
             "id": "2c53ca8b-2844-4bef-a9e2-c81cc285ce24",

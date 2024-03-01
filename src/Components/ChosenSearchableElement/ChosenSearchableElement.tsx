@@ -14,14 +14,22 @@ export const ChosenSearchableElement = ({ id }: ChosenSearchableElementProps) =>
     const { findedElements } = useContext(DataContext)
     const { name, description, type } = findedElements.find(item => item.id === id) || {}
 
-    console.log("{name, description, type} :", { name, description, type });
-
-
     return (
         <div key={id} className={classNames(styles['wrapper'], styles['render-animation'])}>
-            {type === DATA_TYPE_FILE ? <div className={styles['type-file']} /> : <div className={styles['type-folder']} /> }
-            <label htmlFor="description">{name}</label>
-            <div id="description" className={styles['description']}></div>
+            {type === DATA_TYPE_FILE ? <div className={styles['type-file']} /> : <div className={styles['type-folder']} />}
+
+            <div className={styles['name-wrapper']}>
+                <div className={styles['name']}>
+                    {`Имя ${type === DATA_TYPE_FILE ? 'Файла' : 'Папки'}`}
+                    <br /> <br /> {name}
+                </div>
+            </div>
+
+            <div className={styles['description-wrapper']}>
+                <div className={styles['description']}>
+                    Описание <br/> <br /> { description }
+                </div>
+            </div>
         </div>
     )
 }
