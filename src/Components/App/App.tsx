@@ -22,17 +22,11 @@ const App = () => {
     setChosenSearchableElementId,
     goToFortTelecomSite,
     itemsAsJSX,
+    moveChosenSearchableElement,
+    scrollValue,
   } = useData()
 
-  const [scrollValue, setScrollValue] = useState<number>(0)
 
-  const moveChosenSearchableElement = () => {
-    const value = window.scrollY
-    
-    if (value >= 275) {
-      setScrollValue(value - 275)
-    }
-  }
 
   useEffect(() => {
     window.addEventListener('scroll', moveChosenSearchableElement)

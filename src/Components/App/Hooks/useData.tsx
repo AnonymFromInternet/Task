@@ -12,6 +12,15 @@ export const useData = () => {
     const [error, setError] = useState<string>('')
     const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
     const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
+    const [scrollValue, setScrollValue] = useState<number>(0)
+
+    const moveChosenSearchableElement = () => {
+        const value = window.scrollY
+
+        if (value >= 275) {
+            setScrollValue(value - 275)
+        }
+    }
 
     const itemsAsJSX = useMemo(() => {
         return items.map(item => {
@@ -57,9 +66,12 @@ export const useData = () => {
         error,
         chosenSearchableElementId,
         findedElements,
+        itemsAsJSX,
+        scrollValue,
+
+        moveChosenSearchableElement,
         setFindedElements,
         setChosenSearchableElementId,
         goToFortTelecomSite,
-        itemsAsJSX,
     }
 }
