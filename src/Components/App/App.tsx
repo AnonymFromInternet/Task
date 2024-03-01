@@ -4,12 +4,12 @@ import { Input } from '../../UI/Input/Input.tsx';
 import { Tree } from '../Tree/Tree.tsx';
 import { ENTER_KEY, getFindedElements } from './Helpers/Helpers.ts';
 import classNames from 'classnames';
-import { useData } from './Hooks/useData.ts';
+import { useData } from './Hooks/useData.tsx';
+import { DataContext } from '../../Store/Store.ts';
 
 import { ReactComponent as Logo } from '../../Icons/ft-logo.svg'
 
 import styles from './App.module.css'
-import { DataContext } from '../../Store/Store.ts';
 
 const App = () => {
   const {
@@ -21,6 +21,7 @@ const App = () => {
     setFindedElements,
     setChosenSearchableElementId,
     goToFortTelecomSite,
+    itemsAsJSX,
   } = useData()
 
 
@@ -56,7 +57,7 @@ const App = () => {
   }
 
   return (
-    <DataContext.Provider value={{ findedElements }}>
+    <DataContext.Provider value={{ findedElements, itemsAsJSX }}>
       <div className={styles['wrapper']}>
         <header className={styles['header']}>
           <Logo className={styles['logo']} onClick={goToFortTelecomSite} />

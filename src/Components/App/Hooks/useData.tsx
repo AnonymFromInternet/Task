@@ -1,13 +1,23 @@
-import { useEffect, useState } from "react"
-import { Item } from "../../../Types/Response.interface.ts"
+import { ReactElement, useEffect, useMemo, useState } from "react"
+import { Item as ItemInterface } from "../../../Types/Response.interface.ts"
 import apiService from "../../../Services/GetData/GetData.service.ts"
+import React from "react"
+import { Item } from "../../Item/Item.tsx"
 
 export const useData = () => {
     const [isDataLoading, setIsDataLoading] = useState<Boolean>(false)
-    const [items, setItems] = useState<Item[]>([])
+    const [items, setItems] = useState<ItemInterface[]>([])
     const [error, setError] = useState<string>('')
     const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
-    const [findedElements, setFindedElements] = useState<Item[]>([])
+    const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
+
+    const itemsAsJSX = useMemo(() => {
+        return items.map(item => {
+            return <Item item={item} />
+        })
+        
+    }, [items.length > 0 && items])
+
 
     useEffect(() => {
         setIsDataLoading(true)
@@ -16,7 +26,9 @@ export const useData = () => {
             .getData()
             .then(response => {
                 const items = response?.items
-                Array.isArray(items) && setItems(items)
+                if (Array.isArray(items)) {
+                    setItems(items)
+                }
             })
             .catch(setError)
             .finally(() => setIsDataLoading(false))
@@ -35,5 +47,6 @@ export const useData = () => {
         setFindedElements,
         setChosenSearchableElementId,
         goToFortTelecomSite,
+        itemsAsJSX,
     }
 }

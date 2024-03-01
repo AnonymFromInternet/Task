@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export interface Item {
     id: string,
     name: string,
@@ -13,4 +15,5 @@ export interface ResponseInterface {
 
 export interface Context {
     findedElements: Array<Item>,
+    itemsAsJSX: ReactElement[],
 }
