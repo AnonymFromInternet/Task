@@ -10,31 +10,19 @@ import classNames from 'classnames';
 import { ReactComponent as Logo } from '../../Icons/ft-logo.svg'
 
 import styles from './App.module.css'
+import { useData } from './Hooks/useData.ts';
 
 const App = () => {
-  // TODO: вынести все эти методы и данные в кастомный хук
-  const [isDataLoading, setIsDataLoading] = useState<Boolean>(false)
-  const [items, setItems] = useState<Item[]>([])
-  const [error, setError] = useState<string>('')
-  const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
-  const [findedElements, setFindedElements] = useState<Item[]>([])
-
-  useEffect(() => {
-    setIsDataLoading(true)
-
-    apiService
-      .getData()
-      .then(response => {
-        const items = response?.items
-        Array.isArray(items) && setItems(items)
-      })
-      .catch(setError)
-      .finally(() => setIsDataLoading(false))
-  }, [])
-
-  const goToFortTelecomSite = () => {
-    window.location.href = 'https://www.fort-telecom.ru/'
-  }
+  const {
+    isDataLoading,
+    items,
+    error,
+    chosenSearchableElementId,
+    findedElements,
+    setFindedElements,
+    setChosenSearchableElementId,
+    goToFortTelecomSite,
+  } = useData()
 
   const onHandleInputChange = (value: string) => {
     if (!value) {

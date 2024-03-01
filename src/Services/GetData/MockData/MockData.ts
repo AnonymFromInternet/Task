@@ -51,7 +51,7 @@ export const MockData = {
         },
         // Files <-
 
-        // Foler ->
+        // Folers ->
         {
             "id": "c3bd2a1c-72de-4ff6-98cf-b8ae10c663ab",
             "name": "folderName",
@@ -80,6 +80,6 @@ export const MockData = {
                 },
             ]
         }
-        // Folder <-
+        // Folders <-
     ]
 }
