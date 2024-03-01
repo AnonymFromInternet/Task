@@ -14,6 +14,18 @@ export const MockData = {
             "description": "File description"
         },
         {
+            "id": "de0df2d4-f15d-458d-8ae4-f85ab0b07924",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
+        {
+            "id": "2c53ca8b-2844-4bef-a9e2-c81cc285ce24",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
+        {
             "id": "c0ffdb9a-bc51-49fc-b90c-4d2bf64e421d",
             "name": "filename",
             "type": "file",

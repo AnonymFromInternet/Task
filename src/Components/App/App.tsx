@@ -19,9 +19,6 @@ const App = () => {
   const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
   const [findedElements, setFindedElements] = useState<Item[]>([])
 
-  console.log("chosenSearchableElementId :", chosenSearchableElementId);
-  console.log("");
-
   useEffect(() => {
     setIsDataLoading(true)
 
@@ -63,6 +60,9 @@ const App = () => {
       }
 
       setChosenSearchableElementId(nextItemId)
+
+      const currentActiveElementNode = document.getElementById(nextItemId)
+      currentActiveElementNode?.scrollIntoView({ block: 'nearest' })
     }
   }
 
