@@ -1,0 +1,24 @@
+.wrapper {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+
+    width: 440px;
+    height: 360px;
+
+    border: 1px solid #6f45a6;
+    border-radius: 4px;
+}
+
+@keyframes renderAnimation {
+    from {
+        opacity: 0;;
+    }
+    to {
+        opacity: 1;;
+    }
+}
+
+.render-animation {
+    animation: renderAnimation .5s;
+}
