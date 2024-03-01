@@ -24,7 +24,7 @@ export const Tree = ({ isDataLoading, items, chosenSearchableElementId, error }:
 
                 {!error && !isDataLoading && items.length > 0 && <div className={styles['elements-wrapper']}>elements wrapper</div>}
 
-                {chosenSearchableElementId && <ChosenSearchableElement />}
+                {chosenSearchableElementId && <ChosenSearchableElement key={chosenSearchableElementId} id={chosenSearchableElementId} />}
             </div>
         </>
     )

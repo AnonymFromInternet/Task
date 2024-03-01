@@ -22,3 +22,21 @@
 .render-animation {
     animation: renderAnimation .5s;
 }
+
+.type-file {
+    width: 50px;
+    height: 50px;
+    background-image: url('../../Icons/file.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.type-folder {
+    width: 50px;
+    height: 50px;
+    background-image: url('../../Icons/folder.png');
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: right;
+}

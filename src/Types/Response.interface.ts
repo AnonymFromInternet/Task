@@ -10,3 +10,7 @@ export interface Item {
 export interface ResponseInterface {
     items: Array<Item>,
 }
+
+export interface Context {
+    findedElements: Array<Item>,
+}
