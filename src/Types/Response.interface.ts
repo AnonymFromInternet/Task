@@ -1,7 +1,7 @@
 export interface Item {
     id: string,
     name: string,
-    type: string,
+    type: 'file' | 'folder',
     description: string,
 
     content?: Array<Item>,
@@ -10,4 +10,3 @@ export interface Item {
 export interface ResponseInterface {
     items: Array<Item>,
 }
-

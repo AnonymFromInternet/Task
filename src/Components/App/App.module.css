@@ -6,11 +6,11 @@
     width: 100%;
     height: 100%;
 
-    margin: 80px 0 80px 0;
+    margin: 80px 0 25px 0;
 
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .logo {
@@ -18,3 +18,26 @@
     height: 64px;
     cursor: pointer;
 }
+
+.input-and-finded-elements-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.finded-elements-wrapper {
+    width: 255px;
+    min-height: 125px;
+
+    border: 1px solid #6f45a6;
+    border-radius: 4px;
+
+    /* TODO: delete */
+    scroll-behavior: auto;
+}
+
+.finded-elements-title {
+    margin: 25px 0 1px 0;
+    font-size: small;
+    opacity: 0.3;
+    font-family: Arial;}
