@@ -1,15 +1,31 @@
 import React from "react"
 
 import { ChosenSearchableElement } from "../ChosenSearchableElement/ChosenSearchableElement.tsx"
+import { Item } from "../../Types/Response.interface.ts"
+import { Loader } from "../../UI/Loader/Loader.tsx"
+import { Error } from "../../UI/Error/Error.tsx"
 
 import styles from './Tree.module.css'
 
-export const Tree = () => {
-    return <div className={styles['wrapper']} >
-        <div className={styles['elements-wrapper']}>
+interface TreeProps {
+    isDataLoading: Boolean,
+    items: Item[],
+    chosenSearchableElementId: string,
+    error: string,
+}
 
-        </div>
+export const Tree = ({ isDataLoading, items, chosenSearchableElementId, error }: TreeProps) => {
+    return (
+        <>
+            <div className={styles['wrapper']} >
+                {error && <Error />}
 
-        <ChosenSearchableElement />
-    </div>
+                {isDataLoading && <Loader />}
+
+                {!error && !isDataLoading && items.length > 0 && <div className={styles['elements-wrapper']}>elements wrapper</div>}
+
+                {chosenSearchableElementId && <ChosenSearchableElement />}
+            </div>
+        </>
+    )
 }
