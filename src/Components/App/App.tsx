@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Input } from '../../UI/Input/Input.tsx';
 import { Tree } from '../Tree/Tree.tsx';
 import apiService from '../../Services/GetData/GetData.service.ts';
 import { Item } from '../../Types/Response.interface.ts';
-import { getFindedElements } from './Helpers/Helpers.ts';
+import { ENTER_KEY, getFindedElements } from './Helpers/Helpers.ts';
+import classNames from 'classnames';
 
 import { ReactComponent as Logo } from '../../Icons/ft-logo.svg'
 
@@ -17,6 +18,9 @@ const App = () => {
   const [error, setError] = useState<string>('')
   const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
   const [findedElements, setFindedElements] = useState<Item[]>([])
+
+  console.log("chosenSearchableElementId :", chosenSearchableElementId);
+  console.log("");
 
   useEffect(() => {
     setIsDataLoading(true)
@@ -36,10 +40,29 @@ const App = () => {
   }
 
   const onHandleInputChange = (value: string) => {
-    setFindedElements(getFindedElements(items, value))
-
     if (!value) {
       setFindedElements([])
+      setChosenSearchableElementId('')
+      return
+    }
+
+    setFindedElements(getFindedElements(items, value))
+  }
+
+  const onHandleKeyDown = (value: string) => {
+    if (value === ENTER_KEY) {
+      let nextItemId: string;
+
+      if (chosenSearchableElementId) {
+        const currentItemElementIndex = findedElements.findIndex(item => item.id === chosenSearchableElementId)
+        const nextElementIndex = currentItemElementIndex + 1 <= findedElements.length - 1 ? currentItemElementIndex + 1 : 0
+        const nextItem = findedElements.find((_, index) => index === nextElementIndex)
+        nextItemId = nextItem?.id || ''
+      } else {
+        nextItemId = findedElements?.[0].id
+      }
+
+      setChosenSearchableElementId(nextItemId)
     }
   }
 
@@ -49,11 +72,17 @@ const App = () => {
         <Logo className={styles['logo']} onClick={goToFortTelecomSite} />
 
         <div className={styles['input-and-finded-elements-wrapper']}>
-          <Input handleOnChange={onHandleInputChange} />
+          <Input handleOnChange={onHandleInputChange} handleOnKeyDown={onHandleKeyDown} />
 
-          <label htmlFor="finded-elements-wrapper" className={styles['finded-elements-title']}>Найденные файлы или папки при поиске</label>
+          <label htmlFor="finded-elements-wrapper" className={styles['finded-elements-title']}>Найденные файлы или папки</label>
           <div id='finded-elements-wrapper' className={styles['finded-elements-wrapper']}>
-            {findedElements.length > 0 && findedElements.map(element => (<div key={element.id} className={styles['finded-element']}> {element.name} </div>))}
+            {findedElements.length > 0 && findedElements.map(element => (
+              <div
+                key={element.id}
+                id={element.id}
+                className={classNames({ [styles['finded-element']]: true, [styles['active-finded-element']]: element.id === chosenSearchableElementId })}>
+                {element.name}
+              </div>))}
           </div>
         </div>
       </header>

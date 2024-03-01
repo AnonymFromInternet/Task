@@ -2,4 +2,4 @@
 
 #### Are used:
 #### - [React](https://react.dev/)
-#### - [Redux](https://redux.js.org/)
+#### - [TypeScript](https://www.typescriptlang.org/)

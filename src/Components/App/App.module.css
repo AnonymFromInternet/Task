@@ -60,3 +60,9 @@
     background-color: #6f45a6;
     opacity: .5;
   }
+
+  .active-finded-element {
+    background-color: rgb(47, 202, 182);
+    border-radius: 4px;
+    width: 75px;
+}

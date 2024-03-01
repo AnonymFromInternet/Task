@@ -8,31 +8,31 @@ export const MockData = {
             "description": "File description"
         },
         {
-            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "id": "64fd2448-42f4-471b-9dc0-2933c40960bc",
             "name": "filename",
             "type": "file",
             "description": "File description"
         },
         {
-            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "id": "c0ffdb9a-bc51-49fc-b90c-4d2bf64e421d",
             "name": "filename",
             "type": "file",
             "description": "File description"
         },
         {
-            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "id": "08256d71-87c5-462b-8cb5-6b4e5fea2009",
             "name": "filename",
             "type": "file",
             "description": "File description"
         },
         {
-            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "id": "18896ee8-675d-486b-ad9d-c87934c2b653",
             "name": "filename",
             "type": "file",
             "description": "File description"
         },
         {
-            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "id": "473c69e2-da62-4475-b953-4a4ed36f32b9",
             "name": "filename",
             "type": "file",
             "description": "File description"
@@ -53,13 +53,13 @@ export const MockData = {
                     "description": "Folder description",
                     "content": [
                         {
-                            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+                            "id": "d38a9c57-04cc-402e-86d2-e28559e14247",
                             "name": "filename",
                             "type": "file",
                             "description": "File description"
                         },
                         {
-                            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+                            "id": "fe63f5ca-0547-4bf6-a7dd-0c191d1e0b02",
                             "name": "filename",
                             "type": "file",
                             "description": "File description"
