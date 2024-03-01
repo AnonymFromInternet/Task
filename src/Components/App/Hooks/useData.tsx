@@ -1,8 +1,9 @@
-import { ReactElement, useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Item as ItemInterface } from "../../../Types/Response.interface.ts"
 import apiService from "../../../Services/GetData/GetData.service.ts"
-import React from "react"
-import { Item } from "../../Item/Item.tsx"
+import { DATA_TYPE_FOLDER } from "../../../GlobalHelpers/GlobalHelpers.ts"
+import { getFlattenedItems } from "../Helpers/Helpers.ts"
+import { FlattenedItem } from "../Types/Types.ts"
 
 export const useData = () => {
     const [isDataLoading, setIsDataLoading] = useState<Boolean>(false)
@@ -11,13 +12,8 @@ export const useData = () => {
     const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
     const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
 
-    const itemsAsJSX = useMemo(() => {
-        return items.map(item => {
-            return <Item item={item} />
-        })
-        
-    }, [items.length > 0 && items])
-
+    console.log("items :", items);
+    
 
     useEffect(() => {
         setIsDataLoading(true)
@@ -26,8 +22,21 @@ export const useData = () => {
             .getData()
             .then(response => {
                 const items = response?.items
+
                 if (Array.isArray(items)) {
-                    setItems(items)
+                    const flattenedItems = items.reduce((accumulator: Array<FlattenedItem>, currentItem: ItemInterface) => {
+                        const { id, name, type, description } = currentItem
+                        const hasChildren = !!(currentItem?.content && currentItem.content.length > 0)
+
+                        accumulator.push({ id, name, type, description, hasChildren, hasParent: false })
+
+                        if (currentItem.type === DATA_TYPE_FOLDER && hasChildren) {
+                            getFlattenedItems(currentItem.content!, accumulator, true)
+                        }
+
+                        return accumulator
+                    }, [])
+                    setItems(flattenedItems)
                 }
             })
             .catch(setError)
@@ -47,6 +56,5 @@ export const useData = () => {
         setFindedElements,
         setChosenSearchableElementId,
         goToFortTelecomSite,
-        itemsAsJSX,
     }
 }

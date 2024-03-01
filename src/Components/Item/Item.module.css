@@ -1,6 +1,10 @@
 .wrapper {
-    width: 90%;
-
     background-color: red;
     height: 50px;
+
+    margin: 4px;
+
+    word-wrap: break-word;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }

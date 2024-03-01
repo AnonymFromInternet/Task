@@ -21,14 +21,3 @@
     width: 125px;
     height: 125px;
 }
-
-.elements-wrapper {
-    width: 800px;
-    min-height: 310px;
-    border: 1px solid #f54242;
-    border-radius: 4px;
-
-    padding: 25px;
-
-    margin: 25px 0 0 25px;
-}
