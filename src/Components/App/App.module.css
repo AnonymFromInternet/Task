@@ -28,16 +28,35 @@
 .finded-elements-wrapper {
     width: 255px;
     min-height: 125px;
+    max-height: 125px;
 
     border: 1px solid #6f45a6;
     border-radius: 4px;
 
-    /* TODO: delete */
-    scroll-behavior: auto;
+    overflow-y: scroll;
 }
 
 .finded-elements-title {
     margin: 25px 0 1px 0;
     font-size: small;
     opacity: 0.3;
-    font-family: Arial;}
+    font-family: Arial;
+}
+
+.finded-element {
+    margin: 5px 0 0 5px;
+    font-family: Arial;
+    font-size: small;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #6f45a6;
+    opacity: .5;
+  }

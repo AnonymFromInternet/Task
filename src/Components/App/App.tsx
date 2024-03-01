@@ -18,9 +18,6 @@ const App = () => {
   const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
   const [findedElements, setFindedElements] = useState<Item[]>([])
 
-  console.log("findedElements :", findedElements);
-
-
   useEffect(() => {
     setIsDataLoading(true)
 
@@ -40,6 +37,10 @@ const App = () => {
 
   const onHandleInputChange = (value: string) => {
     setFindedElements(getFindedElements(items, value))
+
+    if (!value) {
+      setFindedElements([])
+    }
   }
 
   return (
@@ -51,7 +52,9 @@ const App = () => {
           <Input handleOnChange={onHandleInputChange} />
 
           <label htmlFor="finded-elements-wrapper" className={styles['finded-elements-title']}>Найденные файлы или папки при поиске</label>
-          <div id='finded-elements-wrapper' className={styles['finded-elements-wrapper']}></div>
+          <div id='finded-elements-wrapper' className={styles['finded-elements-wrapper']}>
+            {findedElements.length > 0 && findedElements.map(element => (<div key={element.id} className={styles['finded-element']}> {element.name} </div>))}
+          </div>
         </div>
       </header>
       <Tree isDataLoading={isDataLoading} items={items} chosenSearchableElementId={chosenSearchableElementId} error={error} />

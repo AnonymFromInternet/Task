@@ -13,6 +13,30 @@ export const MockData = {
             "type": "file",
             "description": "File description"
         },
+        {
+            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
+        {
+            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
+        {
+            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
+        {
+            "id": "9b35a7ee-eaf8-46b4-8c9c-dd5ada33d247",
+            "name": "filename",
+            "type": "file",
+            "description": "File description"
+        },
         // Files <-
 
         // Foler ->
