@@ -5,10 +5,7 @@ import styles from './Items.module.css'
 
 
 export const Items = () => {
-    const { itemsAsJSX } = useContext(DataContext)
-
-    console.log("itemsAsJSX :", itemsAsJSX);
-    
+    const { itemsAsJSX } = useContext(DataContext)    
 
     return (
         <div className={styles['wrapper']}>

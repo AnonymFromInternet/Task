@@ -5,7 +5,7 @@
     word-wrap: break-word;
     overflow-y: hidden;
 
-    border: 1px solid #f54242;
+    
     border-radius: 4px;
 
     display: flex;
@@ -13,6 +13,14 @@
     align-items: center;
 
     padding: 5px;
+}
+
+.wrapper-border-file-type {
+    border: 1px solid #0ccc64;
+}
+
+.wrapper-border-folder-type {
+    border: 1px solid #f9ba2b;
 }
 
 .type-file {

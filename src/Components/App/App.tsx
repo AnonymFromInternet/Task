@@ -24,8 +24,6 @@ const App = () => {
     itemsAsJSX,
   } = useData()
 
-
-
   const onHandleInputChange = (value: string) => {
     if (!value) {
       setFindedElements([])

@@ -74,9 +74,23 @@ export const MockData = {
                     "content": [
                         {
                             "id": "d38a9c57-04cc-402e-86d2-e28559e14247",
-                            "name": "filename",
-                            "type": "file",
-                            "description": "File description"
+                            "name": "folderName",
+                            "type": "folder",
+                            "description": "Folder description",
+                            "content": [
+                                {
+                                    "id": "e018a433-595c-4125-8af5-e8599de8cdaa",
+                                    "name": "filename",
+                                    "type": "file",
+                                    "description": "File description"
+                                },
+                                {
+                                    "id": "fa9e11f2-ff04-4ec9-81e9-6afc5677f4e7",
+                                    "name": "filename",
+                                    "type": "file",
+                                    "description": "File description"
+                                },
+                            ]
                         },
                         {
                             "id": "fe63f5ca-0547-4bf6-a7dd-0c191d1e0b02",
