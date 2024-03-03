@@ -6,3 +6,8 @@ export interface FlattenedItem extends Item {
      parentId: string,
      width: number,
 }
+
+type groupIndex = number
+type groupElementsStatus = boolean
+
+export type GroupsStatus = Record<groupIndex, groupElementsStatus>

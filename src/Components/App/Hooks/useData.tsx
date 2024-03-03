@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react"
 import { Item as ItemInterface } from "../../../Types/Response.interface.ts"
 import apiService from "../../../Services/GetData/GetData.service.ts"
-import { DATA_TYPE_FOLDER, GROUP_CLOSED, GROUP_OPENED, GROUP_WAS_CLOSED, GROUP_WAS_OPENED } from "../../../GlobalHelpers/GlobalHelpers.ts"
+import { DATA_TYPE_FOLDER, GROUP_WAS_OPENED } from "../../../GlobalHelpers/GlobalHelpers.ts"
 import { MAX_ITEM_WIDTH, NEXT_CHILD_SIZE_DIFF, getFlattenedItems } from "../Helpers/Helpers.ts"
-import { FlattenedItem } from "../Types/Types.ts"
+import { FlattenedItem, GroupsStatus } from "../Types/Types.ts"
 import { Item } from "../../Item/Item.tsx"
 
 export const useData = () => {
@@ -13,10 +13,8 @@ export const useData = () => {
     const [chosenSearchableElementId, setChosenSearchableElementId] = useState<string>('')
     const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
     const [scrollValue, setScrollValue] = useState<number>(0)
-
-    const [filteredItemsWithOpenedAndClosedGroups, setFilteredItemsWithOpenedAndClosedGroups] = useState<FlattenedItem[]>([])
-    const [groupsStatus, setGroupsStatus] = useState<Record<string, any>>({})
-
+    const [groupsStatus, setGroupsStatus] = useState<GroupsStatus>({})
+    
     const moveChosenSearchableElement = () => {
         const value = window.scrollY
 
@@ -25,31 +23,39 @@ export const useData = () => {
         }
     }
 
+    const getFilteredItems = () => {
+        return items.filter((item, index) => {
+            return groupsStatus[index] === undefined || groupsStatus[index]
+        })
+    }    
+
     const itemsAsJSX = useMemo(() => {
-        return items.map(item => {
+        return getFilteredItems().map(item => {
             return <Item key={item.id} item={item} width={item.width} hasChildren={item.hasChildren} />
         })
-    }, [items])
+    }, [getFilteredItems()])
+
 
     const toggleOpenCloseGroup = (id: string, prevState: 'opened' | 'closed') => {
-        if (prevState === GROUP_WAS_OPENED) {
-            console.log("IF");
-            console.log("groupsStatus :", groupsStatus);
-            
-            
-            setGroupsStatus(prevState => ({ ...prevState, [id]: GROUP_CLOSED }))
-            const group = items.find(item => item.id === id)
-            console.log("group :", group);
+        const newGroupsStatus = items.reduce((accumulator, currentItem, index) => {
+            const opened = true
+            const closed = false
+            const status = prevState === GROUP_WAS_OPENED ? closed : opened
 
-            const isUpperGroup = !group?.parentId
-            if (isUpperGroup) {
-                setFilteredItemsWithOpenedAndClosedGroups(items.filter(item => item.groupId !== id))
+            if (currentItem.id === id) {
+                const { parentId } = items.find(item => item.id === id) || {}
+                const getItem = (item: FlattenedItem) => parentId ? currentItem.groupId && item.parentId === id : item.groupId === currentItem.groupId
+                const lastIndex = items.findLastIndex((item: FlattenedItem) => getItem(item))
+
+                for (let i = index + 1; i < lastIndex + 1; i++) {
+                    accumulator[i] = status
+                }
             }
-        }
 
-        if (prevState === GROUP_WAS_CLOSED) {
-            setGroupsStatus(prevState => ({ ...prevState, [id]: GROUP_OPENED }))
-        }
+            return accumulator
+        }, {})
+
+        setGroupsStatus(newGroupsStatus)
     }
 
     useEffect(() => {
@@ -65,7 +71,7 @@ export const useData = () => {
                         const { id, name, type, description, content } = currentItem
                         const hasChildren = !!(content && content.length > 0)
 
-                        accumulator.push({ id, name, type, description, hasChildren, groupId: '', parentId: '', width: MAX_ITEM_WIDTH })
+                        accumulator.push({ id, name, type, description, hasChildren, groupId: content && content.length > 0 ? id : '', parentId: '', width: MAX_ITEM_WIDTH })
 
                         if (currentItem.type === DATA_TYPE_FOLDER && hasChildren) {
                             getFlattenedItems(content!, accumulator, id, id, MAX_ITEM_WIDTH - NEXT_CHILD_SIZE_DIFF)
@@ -84,18 +90,9 @@ export const useData = () => {
         window.location.href = 'https://www.fort-telecom.ru/'
     }
 
-    const getItems = () => {
-        const items = []
-        for (let key in groupsStatus) {
-            console.log("key :", key);
-        }
-    }
-
-    getItems()
-
     return {
         isDataLoading,
-        items,
+        items: getFilteredItems(),
         error,
         chosenSearchableElementId,
         findedElements,
