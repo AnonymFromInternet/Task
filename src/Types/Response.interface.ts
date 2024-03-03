@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { FlattenedItem } from "../Components/App/Types/Types";
 
 export interface Item {
     id: string,
@@ -17,7 +18,7 @@ export interface Context {
     findedElements: Array<Item>,
     itemsAsJSX: ReactElement[],
     chosenSearchableElementId: string,
-    items: Array<Item>,
+    items: Array<FlattenedItem>,
     scrollValue: number,
 
     setChosenSearchableElementId: (id: string) => void,

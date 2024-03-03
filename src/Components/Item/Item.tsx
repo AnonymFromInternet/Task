@@ -7,6 +7,7 @@ import { DataContext } from "../../Store/Store.ts"
 import { ReactComponent as Arrow } from '../../Icons/arrow-down.svg'
 
 import styles from './Item.module.css'
+import { refreshCurrentSearchableElement } from "./helpers/helpers.ts"
 
 interface ItemProps {
     item: ItemInterface,
@@ -15,12 +16,13 @@ interface ItemProps {
 }
 
 export const Item = ({ item, width, hasChildren }: ItemProps) => {
-    const { setChosenSearchableElementId, chosenSearchableElementId, toggleOpenCloseGroup } = useContext(DataContext)
+    const { setChosenSearchableElementId, chosenSearchableElementId, toggleOpenCloseGroup, items } = useContext(DataContext)
     const [isClosed, setIsClosed] = useState(false)
 
     const handleGroupOpenClose = () => {
         toggleOpenCloseGroup(item.id, isClosed ? GROUP_WAS_CLOSED : GROUP_WAS_OPENED)
         setIsClosed(prevState => !prevState)
+        refreshCurrentSearchableElement(items, item, chosenSearchableElementId, setChosenSearchableElementId)
     }
 
     return (

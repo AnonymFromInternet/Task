@@ -15,6 +15,7 @@ interface TreeProps {
     error: string,
 }
 
+
 export const Tree = ({ isDataLoading, items, chosenSearchableElementId, error }: TreeProps) => {
     return (
         <div className={styles['wrapper']} >
