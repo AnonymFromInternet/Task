@@ -25,6 +25,8 @@ const App = () => {
     moveChosenSearchableElement,
     scrollValue,
     toggleOpenCloseGroup,
+    checkboxesStatus,
+    setCheckboxesStatus,
   } = useData()
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const App = () => {
   }
 
   return (
-    <DataContext.Provider value={{ findedElements, itemsAsJSX, setChosenSearchableElementId, chosenSearchableElementId, items, scrollValue, toggleOpenCloseGroup }}>
+    <DataContext.Provider value={{ findedElements, itemsAsJSX, setChosenSearchableElementId, chosenSearchableElementId, items, scrollValue, toggleOpenCloseGroup, checkboxesStatus, setCheckboxesStatus }}>
       <div className={styles['wrapper']}>
         <header className={styles['header']}>
           <Logo className={styles['logo']} onClick={goToFortTelecomSite} />

@@ -9,5 +9,8 @@ export interface FlattenedItem extends Item {
 
 type groupIndex = number
 type groupElementsStatus = boolean
-
 export type GroupsStatus = Record<groupIndex, groupElementsStatus>
+
+type groupId = string
+type groupIdCheckedValue = boolean
+export type CheckboxesStatus = Record<groupId, groupIdCheckedValue>

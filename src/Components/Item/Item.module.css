@@ -82,3 +82,9 @@
 .arrow-type-folder {
     color: #f9ba2b;
 }
+
+.input-wrapper {
+    width: 22px;
+    display: flex;
+    justify-content: center;
+}

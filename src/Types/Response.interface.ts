@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { FlattenedItem } from "../Components/App/Types/Types";
+import { Dispatch, ReactElement, SetStateAction } from "react";
+import { CheckboxesStatus, FlattenedItem } from "../Components/App/Types/Types";
 
 export interface Item {
     id: string,
@@ -20,7 +20,9 @@ export interface Context {
     chosenSearchableElementId: string,
     items: Array<FlattenedItem>,
     scrollValue: number,
+    checkboxesStatus: CheckboxesStatus,
 
     setChosenSearchableElementId: (id: string) => void,
     toggleOpenCloseGroup: (id: string, prevState: 'opened' | 'closed') => void,
+    setCheckboxesStatus: (Dispatch<SetStateAction<CheckboxesStatus>>),
 }

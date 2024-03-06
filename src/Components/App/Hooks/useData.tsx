@@ -3,7 +3,7 @@ import { Item as ItemInterface } from "../../../Types/Response.interface.ts"
 import apiService from "../../../Services/GetData/GetData.service.ts"
 import { DATA_TYPE_FOLDER, GROUP_WAS_OPENED } from "../../../GlobalHelpers/GlobalHelpers.ts"
 import { MAX_ITEM_WIDTH, NEXT_CHILD_SIZE_DIFF, getFlattenedItems } from "../Helpers/Helpers.ts"
-import { FlattenedItem, GroupsStatus } from "../Types/Types.ts"
+import { CheckboxesStatus, FlattenedItem, GroupsStatus } from "../Types/Types.ts"
 import { Item } from "../../Item/Item.tsx"
 
 export const useData = () => {
@@ -14,7 +14,8 @@ export const useData = () => {
     const [findedElements, setFindedElements] = useState<ItemInterface[]>([])
     const [scrollValue, setScrollValue] = useState<number>(0)
     const [groupsStatus, setGroupsStatus] = useState<GroupsStatus>({})
-    
+    const [checkboxesStatus, setCheckboxesStatus] = useState<CheckboxesStatus>({})
+
     const moveChosenSearchableElement = () => {
         const value = window.scrollY
 
@@ -31,7 +32,7 @@ export const useData = () => {
 
     const itemsAsJSX = useMemo(() => {
         return getFilteredItems().map(item => {
-            return <Item key={item.id} item={item} width={item.width} hasChildren={item.hasChildren} />
+            return <Item key={item.id} item={item} width={item.width} hasChildren={item.hasChildren} groupId={item.groupId} parentId={item.parentId} />
         })
     }, [getFilteredItems()])
 
@@ -56,6 +57,10 @@ export const useData = () => {
         }, {})
 
         setGroupsStatus(newGroupsStatus)
+    }
+
+    const toggleGroupsCheckbox = () => {
+
     }
 
     useEffect(() => {
@@ -98,11 +103,13 @@ export const useData = () => {
         findedElements,
         itemsAsJSX,
         scrollValue,
+        checkboxesStatus,
 
         moveChosenSearchableElement,
         setFindedElements,
         setChosenSearchableElementId,
         goToFortTelecomSite,
         toggleOpenCloseGroup,
+        setCheckboxesStatus,
     }
 }
